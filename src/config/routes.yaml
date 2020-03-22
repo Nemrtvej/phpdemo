@@ -6,3 +6,7 @@
 tags_list:
     path: /api/v1/tags
     controller: App\Controller\TagController::listTags
+
+posts_list:
+    path: /api/v1/posts
+    controller: App\Controller\PostController::listPosts

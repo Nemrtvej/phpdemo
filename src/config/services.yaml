@@ -32,3 +32,9 @@ services:
         tags: ['controller.service_arguments']
         bind:
             $serializer: '@jms_serializer'
+
+    App\Controller\PostController:
+        autowire: true
+        tags: ['controller.service_arguments']
+        bind:
+            $serializer: '@jms_serializer'
