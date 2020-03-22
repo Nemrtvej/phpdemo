@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+
+tags_list:
+    path: /api/v1/tags
+    controller: App\Controller\TagController::listTags

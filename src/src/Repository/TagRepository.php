@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Crate\RestRequest;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +20,23 @@ class TagRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
+    }
+
+    /**
+     * @param RestRequest $restRequest
+     *
+     * @return Collection
+     */
+    public function getListByRestRequest(RestRequest $restRequest): Collection
+    {
+        return new ArrayCollection(
+            $this->findBy(
+                [],
+                $restRequest->getFormattedOrder(),
+                $restRequest->limit,
+                $restRequest->page
+            )
+        );
     }
 
     // /**
