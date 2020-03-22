@@ -13,6 +13,8 @@ services:
           - "8000:8000"
         volumes:
           - ./src:/home/php/src
+          - ./docker/php/entrypoint.sh:/entrypoint.sh
+#        command: "tail -f /dev/null"
 
     postgres:
         image: postgres:12.2
@@ -20,3 +22,10 @@ services:
             - "POSTGRES_USER=${DB_USER}"
             - "POSTGRES_DB=${DB_NAME}"
             - "POSTGRES_PASSWORD=${DB_PASS}"
+        ports:
+          - "6543:5432"
+        volumes:
+          - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
